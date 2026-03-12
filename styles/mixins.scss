@@ -1,0 +1,16 @@
+@mixin Title-text {
+	font-family: 'SF-Pro', sans-serif;
+	font-size: clamp(32px, 2.4vw, 42px);
+	line-height: 1.2;
+	font-weight: 400;
+	color: var(--text_color);
+
+}
+
+@mixin Description-text {
+	font-family: 'SF-Pro', sans-serif;
+	font-size: clamp(18px, 1.2vw, 24px);
+	line-height: 1.2;
+	font-weight: 400;
+	color: var(--text_color);
+}

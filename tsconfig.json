@@ -1,0 +1,38 @@
+// {
+//   "extends": "./.nuxt/tsconfig.json",
+//   "compilerOptions": {
+//     "types": [
+//       "@types/node",
+//       "@nuxt/types",
+//       "#app"
+//     ],
+//     "moduleResolution": "Node",
+//     "baseUrl": "./",
+//     "paths": {
+
+//       "@utils/*": ["./utils/*"],
+//       "@/*": ["./*"],
+//       "~/*": ["./*"],
+//       "#app": [".nuxt/types/app/index.d.ts"],
+//       "#imports": [".nuxt/types/app/imports.d.ts"],
+//       "#components": [".nuxt/types/app/components.d.ts"],
+
+//     }
+//   }
+// }
+{
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "@types/node",
+      "vite/client"
+    ],
+    "moduleResolution": "Node",
+    "baseUrl": "./",
+    "paths": {
+      "@utils/*": ["./utils/*"],
+      "@/*": ["./*"],
+      "~/*": ["./*"]
+    }
+  }
+}
