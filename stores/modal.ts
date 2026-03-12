@@ -10,11 +10,15 @@ export const useModalStore = defineStore('modal', {
 
     }),
     actions: {
-        showModal(modalName: string, props: Object) {
+        showModal(modalName: string, props: Object, scroll?: boolean) {
             this.isVisible = true;
             this.currentModal = modalName;
             this.modalProps = props;
-            document.body.style.overflow = "hidden";
+
+            if (scroll) {
+                document.body.style.overflow = "hidden";
+            }
+            // document.body.style.overflow = "hidden";
             
         },
         closeModal() {

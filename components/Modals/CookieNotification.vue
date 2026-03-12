@@ -1,8 +1,11 @@
 <template>
-  <div class="cookie_modal">
-    <div class="cookie_content">
-      <div class="text">
-        <h3>We value your privacy</h3>
+  <div class="cookie_modal_overlay">
+    <div class="cookie_modal">
+      <div class="cookie_content">
+        <h3>We use cookies to improve your experience on our website.</h3>
+
+        <!-- <div class="text">
+        <h3>We use cookies to improve your experience on our website.</h3>
 
         <p>
           We use cookies and other technologies to store and access personal
@@ -16,14 +19,16 @@
           Some of our partners process personal data on the basis of legitimate
           interest. You can object to such processing at any time.
         </p>
+      </div> -->
+
+        <div class="buttons">
+          <button @click="cookieSettingsHandler" class="secondary">
+            Manage Preferences
+          </button>
+
+          <button @click="modalStore.closeModal" class="primary">Accept All</button>
+        </div>
       </div>
-
-      <div class="buttons">
-        <button @click="cookieSettingsHandler" class="secondary">Customize</button>
-
-        <button @click="modalStore.closeModal" class="primary">Agree</button>
-      </div>
-
     </div>
   </div>
 </template>
@@ -36,87 +41,47 @@ const modalStore = useModalStore();
 onMounted(() => {
   const overlayEl = document.getElementsByClassName("modal-overlay")[0];
   // overlayEl.style('align-items: flex-end')
-  overlayEl.style.alignItems = "flex-end";
-  overlayEl.style.paddingBottom = "20px";
+  overlayEl.style.width = "fit-content";
+  overlayEl.style.height = "auto";
+  overlayEl.style.top = "unset";
+  overlayEl.style.left = "unset";
+  overlayEl.style.bottom = "0";
+  overlayEl.style.right = "0";
+
 
   // console.log(overlayEl)
 
   // console.log(document.getElementsByClassName('modal-overlay'))
 });
 
-
 const cookieSettingsHandler = () => {
-    modalStore.closeModal();
-modalStore.showModal('CookieSettings');
-}
+  modalStore.closeModal();
+  modalStore.showModal("CookieSettings", {}, true);
+};
 </script>
 
 <style lang="scss" scoped>
-// .cookie_modal {
-//     width: 95vw;
-//     height: auto;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     gap: 20px;
-// }
 
-// .cookie_content {
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     padding-top: 20px;
-//     position: relative;
-//     width: 100%;
-//     height: auto;
+.cookie_modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
 
-//     .buttons {
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         gap: 15px;
-
-//         button {
-//             padding: 10px 15px;
-//             background: orange;
-//             border-radius: 15px;
-//             color: white;
-//             font-weight: 600;
-//         }
-//     }
-
-//     .close_button {
-//         position: absolute;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         top: 0px;
-//         right: 0px;
-
-//         aspect-ratio: 1 / 1;
-
-//         button {
-//             width: 100%;
-//             height: 100%;
-//             aspect-ratio: 1 / 1;
-//                    border: 1px solid black;
-//         border-radius: 50%;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         padding: 5px;
-//         font-size: 0.75rem;
-//         }
-//     }
-// }
 
 .cookie_modal {
-  width: 95vw;
+  width: fit-content;
   height: auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 0 1.5vw 1.5vw 0;
+
 
   @media screen and (max-width: 768px) {
+    padding: 0 2vw 2vw;
     position: absolute;
     bottom: 15px;
   }
@@ -125,27 +90,19 @@ modalStore.showModal('CookieSettings');
 .cookie_content {
   background: white;
   border-radius: 8px;
-  padding: 25px 30px;
+  padding: 15px 20px;
+  max-width: 80%;
   width: 100%;
 
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
   align-items: center;
   gap: 30px;
-
+border: 1px solid rgba(55, 28, 71, 0.2);
   position: relative;
 
-  .text {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 20px;
-    // max-width: 700px;
-
-    h3 {
-      font-size: 2rem;
+     h3 {
+      font-size: clamp(0.75rem, 3.8vw, 1rem);
       font-weight: 700;
       font-family: "Libre Baskerville", sans-serif;
       font-style: normal;
@@ -153,41 +110,69 @@ modalStore.showModal('CookieSettings');
       text-align: center;
 
       @media screen and (max-width: 768px) {
-        font-size: 1.6rem;
+        // font-size: 1.6rem;
         line-height: 130%;
       }
 
-      @media screen and (max-width: 480px) {
-        font-size: 1.5rem;
-      }
+      // @media screen and (max-width: 480px) {
+      //   font-size: 1.5rem;
+      // }
 
-      @media screen and (max-width: 375px) {
-        font-size: 1.4rem;
-      }
+      // @media screen and (max-width: 375px) {
+      //   font-size: 1.4rem;
+      // }
     }
 
-    p {
-      font-size: 1.25rem;
-      font-weight: 400;
-      font-family: "Josefin Sans", sans-serif;
+  // .text {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: flex-start;
+  //   align-items: flex-start;
+  //   gap: 20px;
+  //   // max-width: 700px;
 
-      font-style: normal;
-      line-height: 150%;
+  //   h3 {
+  //     font-size: 2rem;
+  //     font-weight: 700;
+  //     font-family: "Libre Baskerville", sans-serif;
+  //     font-style: normal;
+  //     line-height: 150%;
+  //     text-align: center;
 
-      @media screen and (max-width: 768px) {
-        font-size: 1.125rem;
-        line-height: 130%;
-      }
+  //     @media screen and (max-width: 768px) {
+  //       font-size: 1.6rem;
+  //       line-height: 130%;
+  //     }
 
-      @media screen and (max-width: 480px) {
-        font-size: clamp(0.8rem, 3.8vw, 1.2rem);
-      }
-    }
-  }
+  //     @media screen and (max-width: 480px) {
+  //       font-size: 1.5rem;
+  //     }
+
+  //     @media screen and (max-width: 375px) {
+  //       font-size: 1.4rem;
+  //     }
+  //   }
+
+  //   p {
+  //     font-size: 1.25rem;
+  //     font-weight: 400;
+  //     font-family: "Josefin Sans", sans-serif;
+
+  //     font-style: normal;
+  //     line-height: 150%;
+
+  //     @media screen and (max-width: 768px) {
+  //       font-size: 1.125rem;
+  //       line-height: 130%;
+  //     }
+
+  //     @media screen and (max-width: 480px) {
+  //       font-size: clamp(0.8rem, 3.8vw, 1.2rem);
+  //     }
+  //   }
+  // }
 
   .buttons {
-    width: 100%;
-    height: auto;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -198,10 +183,11 @@ modalStore.showModal('CookieSettings');
       padding: 10px 18px;
       border-radius: 6px;
       font-weight: 700;
+      white-space: nowrap;
       border: none;
       cursor: pointer;
 
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-weight: 400;
       font-family: "Josefin Sans", sans-serif;
 
@@ -210,6 +196,8 @@ modalStore.showModal('CookieSettings');
       transition: all ease 0.3s;
 
       @media screen and (max-width: 768px) {
+        // flex: 1;
+        width: 100%;
         font-size: 1.125rem;
         line-height: 130%;
       }
@@ -246,14 +234,27 @@ modalStore.showModal('CookieSettings');
         }
       }
     }
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      height: auto;
+
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    max-width: 90%;
   }
 
   @media screen and (max-width: 768px) {
+    flex-direction: column;
     padding: 25px 20px;
+    max-width: 100%;
+    gap: 15px;
+
   }
   @media screen and (max-width: 480px) {
     padding: 20px 15px;
-    
   }
 }
 </style>

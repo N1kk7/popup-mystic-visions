@@ -24,11 +24,11 @@
       </strong>
     </div>
 
-    <!-- <div class="cookie_modal">
+    <div class="cookie_modal">
       <button @click="modalStore.showModal('CookieNotification', {})">Open cookie modal</button>
-      <button @click="modalStore.showModal('CookieSettings', {})">Open cookie settings</button>
+      <button @click="modalStore.showModal('CookieSettings', {}, true)">Open cookie settings</button>
 
-    </div> -->
+    </div>
   </section>
 </template>
 
@@ -36,9 +36,9 @@
 import { ref, onMounted, nextTick } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { useModalStore } from "../stores/modal";
+import { useModalStore } from "../stores/modal";
 
-// const modalStore = useModalStore();
+const modalStore = useModalStore();
 
 gsap.registerPlugin(ScrollTrigger);
 

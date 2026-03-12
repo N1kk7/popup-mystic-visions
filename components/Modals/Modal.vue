@@ -80,18 +80,20 @@ const modalComponents = {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  // background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  backdrop-filter: blur(3px);
+  // backdrop-filter: blur(3px);
   align-items: center;
   z-index: 1000;
 }
 .modal-content {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
+  background: transparent;
+  // padding: 10px;
+  // border-radius: 10px;
   overflow-x: hidden;
+  width: 100%;
+  height: 100%;
   @media screen and (max-width: 768px) {
     & {
       width: 100vw;
